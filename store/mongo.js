@@ -6,7 +6,7 @@ const {
 } = require('../config')
 const { MongoClient } = require('mongodb')
 let connection = null
-const mongoUrl = `mongodb+srv://${user}:${pass}@${host}/${name}`
+const mongoUrl = `mongodb+srv://${user}:${pass}@${host}/${name}?retryWrites=true&w=majority`
 
 async function connectDb () {
 	if (connection) {
@@ -14,7 +14,8 @@ async function connectDb () {
 	}
 
 	const client = new MongoClient(mongoUrl, {
-		useNewUrlParser: true
+		useNewUrlParser: true,
+		useUnifiedTopology: true
 	})
 	try {
 		await client.connect()
