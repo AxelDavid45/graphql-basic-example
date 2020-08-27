@@ -2,12 +2,12 @@
 const express = require('express')
 const app = express()
 const fs = require('fs')
-const resolvers = require('./lib/resolvers')
+const resolvers = require('./lib/graphql/resolvers')
 const { graphqlHTTP } = require('express-graphql')
 const { makeExecutableSchema } = require('graphql-tools')
 
 // Build the schema
-const typeDefs = fs.readFileSync(`${__dirname}/lib/schema.graphql`, 'utf8')
+const typeDefs = fs.readFileSync(`${__dirname}/lib/graphql/schema.graphql`, 'utf8')
 
 const schema = makeExecutableSchema({
 	typeDefs, resolvers
